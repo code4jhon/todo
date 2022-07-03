@@ -1,5 +1,6 @@
 import './App.css';
 import ButtonAppBar from './components/AppBar';
+import BottomBar from './components/BottomBar';
 import { TextField } from '@mui/material';
 import { Button } from '@mui/material';
 import TodoItem from './components/TodoItem'
@@ -45,13 +46,12 @@ function App(props) {
   return (
     <div>
       <ButtonAppBar></ButtonAppBar>
-
       <div className='app-body'>
         <TextField fullWidth label="What do I want to learn ?" variant="outlined" style={{'marginTop': '16px'}} onChange={onTextFieldChange}/>
         <Button variant="contained" fullWidth component="span" style={{'margin': '8px 0 20px'}} onClick={addNewTask}>Add to the list</Button>
         {taskList}
       </div>
-
+      <BottomBar></BottomBar>
     </div>
   );
 }
