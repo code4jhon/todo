@@ -9,7 +9,7 @@ export default function ButtonAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>My To Do Lists</Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>My Awesome TODO</Typography>
         </Toolbar>
       </AppBar>
     </Box>
