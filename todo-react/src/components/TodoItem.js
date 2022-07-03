@@ -1,9 +1,9 @@
-import { Checkbox } from '@mui/material';
+import { Checkbox, FormControlLabel } from '@mui/material';
 
 export default function TodoItem(props) {
   return (
     <div>
-      <Checkbox checked={props.completed} /> {props.name}
+      <FormControlLabel control={<Checkbox defaultChecked={props.completed}/>} label={props.name} />
     </div>
   )
 }
