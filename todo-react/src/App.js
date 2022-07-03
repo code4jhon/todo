@@ -34,6 +34,10 @@ function App(props) {
     }
   }
 
+  const deleteAll = function () {
+    setTasks([]);
+  }
+
   // uses state.task to create a list of todo items
   const taskList = tasks.map(task => (
     <TodoItem key={task.id} name={task.name} completed={task.completed} deleteTask={deleteTask}/>
@@ -44,12 +48,14 @@ function App(props) {
   }
 
   return (
-    <div>
+    <div style={{height: '100%'}}>
       <ButtonAppBar></ButtonAppBar>
       <div className='app-body'>
         <TextField fullWidth label="What do I want to learn ?" variant="outlined" style={{'marginTop': '16px'}} onChange={onTextFieldChange}/>
         <Button variant="contained" fullWidth component="span" style={{'margin': '8px 0 20px'}} onClick={addNewTask}>Add to the list</Button>
         {taskList}
+
+        <Button variant="outlined" color="error" style={{position: 'absolute', bottom: '64px', right: '16px'}} onClick={deleteAll}>Delete All</Button>
       </div>
       <BottomBar></BottomBar>
     </div>
