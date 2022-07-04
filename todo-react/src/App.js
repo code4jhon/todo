@@ -1,7 +1,7 @@
 import './App.css';
 import ButtonAppBar from './components/AppBar';
 import BottomBar from './components/BottomBar';
-import { TextField } from '@mui/material';
+import { TextField, Snackbar, Alert, Stack } from '@mui/material';
 import { Button } from '@mui/material';
 import TodoItem from './components/TodoItem';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -11,6 +11,7 @@ import { useState } from "react";
 function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
   const [name, setName] = useState('');
+  const [open, setOpen] = useState(false);
   const percent = (tasks.filter(task => task.completed).length * 100) / tasks.length
 
   const addNewTask = function () {
@@ -32,6 +33,10 @@ function App(props) {
         task.completed = checked
       }
     })
+
+    if (currentTasks.length && currentTasks.filter(task => !task.completed).length === 0) {
+      setOpen(true)
+    }
 
     setTasks(currentTasks)
   }
@@ -63,6 +68,14 @@ function App(props) {
     setName(e.target.value); // call setName to keep state.name updated
   }
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   return (
     <div style={{height: '100%'}}>
       <ButtonAppBar></ButtonAppBar>
@@ -73,6 +86,14 @@ function App(props) {
         {taskList}
         <Button variant="outlined" color="error" style={{position: 'absolute', bottom: '64px', right: '16px'}} onClick={deleteAll}>Delete All</Button>
       </div>
+
+      <Stack spacing={20} sx={{ width: '100%' }}>
+        <Snackbar open={open} autoHideDuration={1500} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'left' }}>
+          <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          🐣 🎉 You made it!
+          </Alert>
+        </Snackbar>
+      </Stack>
       <BottomBar></BottomBar>
     </div>
   );
