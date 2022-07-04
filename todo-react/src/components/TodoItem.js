@@ -7,9 +7,13 @@ export default function TodoItem(props) {
     props.deleteTask(props.name) // calls the function passed through the props, this function is defined in App.js
   }
 
+  const onChange = function (e) {
+    props.updateCompletedState(props.name, e.currentTarget.checked)
+  }
+
   return (
     <div>
-      <FormControlLabel control={<Checkbox defaultChecked={props.completed}/>} label={props.name} />
+      <FormControlLabel control={<Checkbox onChange={onChange} />} label={props.name} />
       <IconButton aria-label="delete" size="small" style={{position: 'absolute', right: '16px'}} onClick={onDeleteTask}>
         <DeleteIcon fontSize="inherit" />
       </IconButton>
