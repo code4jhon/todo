@@ -17,8 +17,11 @@ function App(props) {
     // TODO implement functionality that prevents adding duplicated entries (with the same name)
     const uniqueId =  name + Math.random();
     const newTask = { id: uniqueId, name: name, completed: false };
+    const text = document.getElementById('foo')
 
     setTasks([...tasks, newTask]); // updates the state of the app
+    text.value = ''
+    setName('')
   }
 
   const updateCompletedState = function (taskName, checked) {
@@ -65,7 +68,7 @@ function App(props) {
       <ButtonAppBar></ButtonAppBar>
       <LinearProgress variant="determinate" color='success' value={percent} />
       <div style={{padding: '8px'}}>
-        <TextField fullWidth label="What do I want to learn ?" variant="outlined" style={{'marginTop': '16px'}} onChange={onTextFieldChange}/>
+        <TextField id="foo" fullWidth label="What do I want to learn ?" variant="outlined" style={{'marginTop': '16px'}} onChange={onTextFieldChange}/>
         <Button variant="contained" fullWidth component="span" style={{'margin': '8px 0 20px'}} onClick={addNewTask}>Add to the list</Button>
         {taskList}
         <Button variant="outlined" color="error" style={{position: 'absolute', bottom: '64px', right: '16px'}} onClick={deleteAll}>Delete All</Button>
